@@ -13,7 +13,7 @@ class ListingForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ["first_name", "last_name", "email", "is_staff"]
-        labels = {
-            "is_staff": "Show my name on the department board",
-        }
+        # is_staff is Django's privilege flag and gates the department desk, so it
+        # must never be editable from a user-facing form. Leaving it here let any
+        # member POST is_staff=on and promote themselves. Only safe profile fields.
+        fields = ["first_name", "last_name", "email"]
